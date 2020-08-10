@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <style>
+      html, body {
+        margin: 0;
+      }
+      .puzzle {
+        width: 75vh;
+        height: 75vh;
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .puzzle > div {
+        width: 33.333%;
+        height: 33.333%;
+        background: red;
+        border: 1px solid white;
+        box-sizing: border-box;
+        background: url(/images/map.png) no-repeat;
+        background-size: 300%;
+      }
+      .puzzle > div[data-piece1] {
+        background-position: 0 0;
+      }
+      .puzzle > div[data-piece2] {
+        background-position: 50% 0;
+      }
+      .puzzle > div[data-piece3] {
+        background-position: 100% 0;
+      }
+
+      .puzzle > div[data-piece4] {
+        background-position: 0 50%;
+      }
+      .puzzle > div[data-piece5] {
+        background-position: 50% 50%;
+      }
+      .puzzle > div[data-piece6] {
+        background-position: 100% 50%;
+      }
+
+      .puzzle > div[data-piece7] {
+        background-position: 0 100%;
+      }
+      .puzzle > div[data-piece8] {
+        background-position: 50% 100%;
+      }
+      .puzzle > div[data-piece9] {
+        background-position: 100% 100%;
+      }
+      @import url('https://fonts.googleapis.com/css?family=Montserrat:900i&display=swap');
+
+      body{
+        font-family: 'Montserrat', sans-serif;
+      }
+
+      span{
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size:48px;
+        letter-spacing:0.1em;
+        -webkit-text-fill-color: transparent;
+        -webkit-text-stroke-width: 3px;
+        -webkit-text-stroke-color: black;
+        text-shadow: 
+                  5px 5px #ff1f8f
+      }
+    </style>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %>, can you find the treasure?</p>
+    <!-- map generated from https://green-meklar.neocities.org/Javascript/Pirate_map_generator.html -->
+    <span><%= solved %></span>
+    <div class="puzzle">
+      <%for (var tile in tiles){%>
+        <div <%= tiles[tile] %> onclick="location.href='/map/<%= tiles[tile] %>';" style="cursor:pointer;"></div>
+      <%  } %>
+    </div>
+  </body>
+</html>
